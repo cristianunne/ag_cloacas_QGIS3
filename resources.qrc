@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/plugins/ag_cloacas" >
+        <file>icon.png</file>
+        <file>icons/editar_attr.png</file>
+        <file>icons/conexion.png</file>
+    </qresource>
+</RCC>
