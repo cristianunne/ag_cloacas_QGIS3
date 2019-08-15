@@ -22,14 +22,11 @@
  ***************************************************************************/
 """
 import os
-import sys
 from qgis.PyQt.QtCore import *
 from qgis.PyQt.QtGui import *
 from qgis.core import *
 from qgis.gui import *
 from qgis.utils import *
-import qgis
-
 
 try:
     from qgis.PyQt.QtWidgets import *
@@ -38,11 +35,10 @@ except:
 
 
 # Initialize Qt resources from file resources.py
-from .resources import *
 # Import the code for the dialog
 
 import os.path
-from .CloacasConexion import CloacasConexion
+from .tools.CloacasConexionTool import CloacasConexionTool
 from .tools.modifiedattributetool import ModifiedAttributeTool
 
 
@@ -78,7 +74,7 @@ class AGCloacas:
         self.modified_attr_tool = ModifiedAttributeTool(self.iface, self.toolbar)
         self.toolbar.addSeparator()
 
-        self.conexion_tool = CloacasConexion(self.iface, self.toolbar)
+        self.conexion_tool = CloacasConexionTool(self.iface, self.toolbar)
         self.toolbar.addSeparator()
 
 

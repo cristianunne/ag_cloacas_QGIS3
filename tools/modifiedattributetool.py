@@ -3,6 +3,7 @@
 from qgis.PyQt.QtCore import *
 from qgis.PyQt.QtGui import *
 from qgis.core import *
+import os
 from qgis.gui import QgsAttributeDialog
 
 try:
@@ -11,20 +12,23 @@ except:
     pass
 #Traigo la herramienta de seleccion
 from .modifiedattrtool import ModifiedAttrTool
+from ..Path import PathClass
 
 
 class ModifiedAttributeTool():
     
     def __init__(self, iface, toolbar):
-        
+
         self.iface = iface
         self.toolbar = toolbar
         self.canvas = self.iface.mapCanvas()
 
         self.result = False
-        
+        dir = PathClass()
+        filename = os.path.join(dir.getPath(), 'icons\editar_attr.png')
+
         # Create actions 
-        self.md_attr = QAction(QIcon(":/plugins/ag_cloacas/icons/editar_attr.png"),
+        self.md_attr = QAction(QIcon(filename),
                                QCoreApplication.translate("AG_Cloacas", "Modificar Atributos"),  self.iface.mainWindow())
             
         self.md_attr.setCheckable(True)
@@ -41,6 +45,9 @@ class ModifiedAttributeTool():
     def act_modified_attr(self):
         
         if self.md_attr.isChecked():
+
+
+
             self.canvas.setMapTool(self.tool)
             self.tool.select_.connect(self.alm_res)
             self.activate()

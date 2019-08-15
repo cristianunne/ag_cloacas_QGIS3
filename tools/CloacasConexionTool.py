@@ -4,6 +4,8 @@ from qgis.PyQt.QtGui import *
 from qgis.core import *
 from qgis.gui import QgsMessageBar
 from qgis.utils import *
+from ..Path import PathClass
+import os
 
 try:
     from qgis.PyQt.QtWidgets import *
@@ -15,7 +17,7 @@ from ag_cloacas.entities.Cl_InfotdEntity import Cl_InfotdEntity
 
 
 
-class CloacasConexion():
+class CloacasConexionTool():
     
     def __init__(self, iface, toolbar):
         
@@ -27,10 +29,11 @@ class CloacasConexion():
         #Clase que maneja el trdom
         self.cl_trdom = None
         self.info_td = None
-        
-        
+
+        dir = PathClass()
+        filename = os.path.join(dir.getPath(), 'icons\conexion.png')
         # Create actions 
-        self.nodos = QAction(QIcon(":/plugins/ag_cloacas/icons/conexion.png"),  QCoreApplication.translate("AG_Cloacas", "Crear Conexion Domiciliaria"),  self.iface.mainWindow())
+        self.nodos = QAction(QIcon(filename),  QCoreApplication.translate("AG_Cloacas", "Crear Conexion Domiciliaria"),  self.iface.mainWindow())
         self.nodos.setCheckable(True)
         self.nodos.triggered.connect(self.conexionCloacas)
         
@@ -38,10 +41,7 @@ class CloacasConexion():
         self.toolbar.addAction(self.nodos)
 
         
-       
-        
     def conexionCloacas(self):
-        
         #evaluo que el currentlayer sea cl_tramos
         if self.nodos.isChecked():
              #Verifico que las tablas esten cargadas
