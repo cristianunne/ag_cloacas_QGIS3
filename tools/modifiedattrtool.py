@@ -2,7 +2,6 @@ from qgis.PyQt.QtCore import *
 from qgis.PyQt.QtGui import *
 from qgis.core import *
 from qgis.gui import *
-#from qgis.core import QgsFeature, QgsGeometry, QgsPoint
 
 class ModifiedAttrTool(QgsMapTool):
     
@@ -49,7 +48,7 @@ class ModifiedAttrTool(QgsMapTool):
         
         if res == True:
             layer = self.canvas.currentLayer()
-            #inicio la edicion
+            #inicio la edicion de los atributos de la linea
             layer.startEditing()
             form = self.iface.getFeatureForm(layer, self.geom_Sel)
             form.setModal(True)
@@ -61,7 +60,6 @@ class ModifiedAttrTool(QgsMapTool):
                 layer.commitChanges()
             else:
                 layer.rollBack()
-            #form.show()
             
         else:
             self.select_.emit(False)

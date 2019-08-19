@@ -62,7 +62,7 @@ class CloacasConexionTool():
                 self.nodos.setChecked(False)
                 
             except (IndexError):
-                self.iface.messageBar().pushMessage("Error", "Debe cargar la capa 'cl_tramos' y 'parcelas'", level=QgsMessageBar.CRITICAL)
+                self.iface.messageBar().pushMessage("Error", "Debe cargar la capa 'cl_tramos' y 'parcelas'", Qgis.Critical)
                 self.nodos.setChecked(False)
             
 
@@ -81,7 +81,7 @@ class CloacasConexionTool():
                 num_cltramos_sel = 1
                 
             if(num_parc_sel == 0 or num_cltramos_sel == 0):
-                self.iface.messageBar().pushMessage("Error", "Debe seleccionar al menos 1 parcela y 1 cl_tramo", level=QgsMessageBar.WARNING)
+                self.iface.messageBar().pushMessage("Error", "Debe seleccionar al menos 1 parcela y 1 cl_tramo", Qgis.Warning)
             
             else:
                 #Recorro cada uno de los features seleccionados
@@ -100,7 +100,7 @@ class CloacasConexionTool():
             
         except (IndexError):
             num_cltramos_sel = 0
-            self.iface.messageBar().pushMessage("Error", "Debe cargar la capa 'cl_tramos' y 'parcelas'", level=QgsMessageBar.CRITICAL)
+            self.iface.messageBar().pushMessage("Error", "Debe cargar la capa 'cl_tramos' y 'parcelas'", Qgis.Critical)
     
     def polygonToLine(self, feat_parc, layer_parcelas):
        

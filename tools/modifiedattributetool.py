@@ -4,7 +4,6 @@ from qgis.PyQt.QtCore import *
 from qgis.PyQt.QtGui import *
 from qgis.core import *
 import os
-from qgis.gui import QgsAttributeDialog
 
 try:
     from qgis.PyQt.QtWidgets import *
@@ -24,6 +23,7 @@ class ModifiedAttributeTool():
         self.canvas = self.iface.mapCanvas()
 
         self.result = False
+
         dir = PathClass()
         filename = os.path.join(dir.getPath(), 'icons\editar_attr.png')
 
@@ -43,11 +43,8 @@ class ModifiedAttributeTool():
         
         
     def act_modified_attr(self):
-        
+
         if self.md_attr.isChecked():
-
-
-
             self.canvas.setMapTool(self.tool)
             self.tool.select_.connect(self.alm_res)
             self.activate()

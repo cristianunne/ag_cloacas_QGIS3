@@ -40,6 +40,7 @@ except:
 import os.path
 from .tools.CloacasConexionTool import CloacasConexionTool
 from .tools.modifiedattributetool import ModifiedAttributeTool
+from .tools.TramosActionTool import TramosAction
 
 
 
@@ -76,6 +77,8 @@ class AGCloacas:
 
         self.conexion_tool = CloacasConexionTool(self.iface, self.toolbar)
         self.toolbar.addSeparator()
+
+        self.tramos_action = TramosAction(self.iface, self.toolbar)
 
 
 
