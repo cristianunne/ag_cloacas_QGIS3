@@ -4,5 +4,9 @@
         <file>icons/editar_attr.png</file>
         <file>icons/conexion.png</file>
         <file>icons/polilinea.png</file>
+        <file>icons/polilinea_delete.png</file>
+        <file>icons/direction.png</file>
+        <file>icons/dir_delete.png</file>
+        <file>icons/dir_change.png</file>
     </qresource>
 </RCC>

@@ -41,6 +41,10 @@ import os.path
 from .tools.CloacasConexionTool import CloacasConexionTool
 from .tools.modifiedattributetool import ModifiedAttributeTool
 from .tools.TramosActionTool import TramosAction
+from .tools.DeleteTramosProperties import DeleteTramosProperties
+from .tools.DirectionAction import DirectionAction
+from .tools.DirectionDeleteAction import DirectionDeleteAction
+from .tools.DirectionChange import DirectionChange
 
 
 
@@ -79,6 +83,13 @@ class AGCloacas:
         self.toolbar.addSeparator()
 
         self.tramos_action = TramosAction(self.iface, self.toolbar)
+        self.delete_tramos_properties = DeleteTramosProperties(self.iface, self.toolbar)
+        self.toolbar.addSeparator()
+
+        self.direction_action = DirectionAction(self.iface, self.toolbar)
+        self.direction_delete_action = DirectionDeleteAction(self.iface, self.toolbar)
+        self.direcion_change = DirectionChange(self.iface, self.toolbar)
+        self.toolbar.addSeparator()
 
 
 

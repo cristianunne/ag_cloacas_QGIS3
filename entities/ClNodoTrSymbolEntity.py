@@ -144,18 +144,15 @@ class ClNodoTrSymbolEntity():
         
         #Obtengo los puntos del tramo
         points_tramo = cl_tramos_entity.getVertexTramoAsPoint(tramo)
-        
+
         #Consulto la tabla cl_nodo_tr_symbol para saber si hay un punto en esa coordenada
-        
         feats_tr_symbol =  self.cl_nodo_tr_symbol.getFeatures()
-        
         #reccoro la capa y obtengo cada feature
         
         for feat in feats_tr_symbol:
             point_symbol = feat.geometry().asPoint()
-            
             #ACA EVALUO SI EL PUNTO ES IGUAL
-            if point_symbol == points_tramo[0]:
+            if point_symbol == QgsPointXY(points_tramo[0].x(), points_tramo[0].y()):
                 return feat
         
         #Imprimo los datos
@@ -176,7 +173,7 @@ class ClNodoTrSymbolEntity():
         for feat in feats_tr_symbol:
             point_symbol = feat.geometry().asPoint()
             
-            if point_symbol == points_tramo[num_vert - 1]:
+            if point_symbol == QgsPointXY(points_tramo[num_vert - 1].x(), points_tramo[num_vert - 1].y()):
                 return feat
 
         return False

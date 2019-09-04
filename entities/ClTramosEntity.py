@@ -3,8 +3,6 @@ from qgis.PyQt.QtGui import *
 from qgis.core import *
 
 
-
-
 class ClTramosEntity():
     
     def __init__(self):
@@ -29,12 +27,12 @@ class ClTramosEntity():
             diametro = None
         
         #obtengo los indices de los atributos
-        idx_tipo =  self.cl_tramo.fieldNameIndex("tipo")
-        idx_longitud =  self.cl_tramo.fieldNameIndex("longitud")
-        idx_diametro =  self.cl_tramo.fieldNameIndex("diametro")
-        idx_material=  self.cl_tramo.fieldNameIndex("material")
-        idx_conforme =  self.cl_tramo.fieldNameIndex("conforme")
-        idx_sentido = self.cl_tramo.fieldNameIndex("sentido")
+        idx_tipo =  self.cl_tramo.fields().indexFromName("tipo")
+        idx_longitud =  self.cl_tramo.fields().indexFromName("longitud")
+        idx_diametro =  self.cl_tramo.fields().indexFromName("diametro")
+        idx_material=  self.cl_tramo.fields().indexFromName("material")
+        idx_conforme =  self.cl_tramo.fields().indexFromName("conforme")
+        idx_sentido = self.cl_tramo.fields().indexFromName("sentido")
 
         sentido = "ft"
         
@@ -43,7 +41,7 @@ class ClTramosEntity():
         #Inicio la edicion y la termino
         self.cl_tramo.startEditing()
 
-        if  self.cl_tramo.changeAttributeValues(layer_select_tramo.id(), attrs ):
+        if  self.cl_tramo.changeAttributeValues(id_tramo, attrs ):
             self.cl_tramo.commitChanges()
             return True
         else:
@@ -81,7 +79,7 @@ class ClTramosEntity():
         id_tramo = tramo_select["gid"]
         
         #obtengo los indices de las columnas
-        idx_gid_sym_inicio = self.cl_tramo.fieldNameIndex("id_nodo_symbol_inicio")
+        idx_gid_sym_inicio = self.cl_tramo.fields().indexFromName("id_nodo_symbol_inicio")
         
         attrs = {idx_gid_sym_inicio :  gid_point_sym}
 
@@ -102,7 +100,7 @@ class ClTramosEntity():
         id_tramo = tramo_select["gid"]
         
         #obtengo los indices de las columnas
-        idx_gid_sym_inicio = self.cl_tramo.fieldNameIndex("id_nodo_symbol_final")
+        idx_gid_sym_inicio = self.cl_tramo.fields().indexFromName("id_nodo_symbol_final")
         
         attrs = {idx_gid_sym_inicio :  gid_point_sym}
 
@@ -123,7 +121,7 @@ class ClTramosEntity():
         id_tramo = tramo_select["gid"]
         
         #obtengo los indices de las columnas
-        idx_gid_sym_inicio = self.cl_tramo.fieldNameIndex("id_nodo_tr_inicio")
+        idx_gid_sym_inicio = self.cl_tramo.fields().indexFromName("id_nodo_tr_inicio")
         
         attrs = {idx_gid_sym_inicio :  gid_point}
 
@@ -144,7 +142,7 @@ class ClTramosEntity():
         id_tramo = tramo_select["gid"]
         
         #obtengo los indices de las columnas
-        idx_gid_sym_final = self.cl_tramo.fieldNameIndex("id_nodo_tr_final")
+        idx_gid_sym_final = self.cl_tramo.fields().indexFromName("id_nodo_tr_final")
         
         attrs = {idx_gid_sym_final :  gid_point}
 
@@ -173,7 +171,7 @@ class ClTramosEntity():
                     sentido = 'ft'
 
         # obtengo los indices de las columnas
-        idx_sentido = self.cl_tramo.fields().indexFromName("sentido")
+        idx_sentido = self.cl_tramo.fields().fields().indexFromName("sentido")
 
         attrs = {idx_sentido: sentido}
 
