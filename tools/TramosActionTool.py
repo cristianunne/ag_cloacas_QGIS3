@@ -158,44 +158,47 @@ class TramosAction():
                     # guardo solo el elemento 1 de la seleccion
                     tramo_select = layer_select_tramo[0]
 
-                    # PRIMERO VERIFICO QUE NO HAYA NINGUN TIPO DE DATOS CARGADOS EN EL TRAMO
-                    if self.cl_tramos_entity.verifiedTramo(tramo_select) == False:
-                        # evaluo si hay un simbolo al inicio y al Final y proceso segun ello
-                        res_exists_symbol_inicio = self.cl_nodo_symbol_entity.getExistSymbolInicio(tramo_select)
-                        res_exists_symbol_final = self.cl_nodo_symbol_entity.getExistSymbolFinal(tramo_select)
+                    #Controlo que haya guardado del Tramo
+                    if tramo_select.id() < 0:
+                        self.iface.messageBar().pushMessage("Error", "Por favor Guarde el tramo para proceder", Qgis.Warning)
+
+                    else :
+                        # PRIMERO VERIFICO QUE NO HAYA NINGUN TIPO DE DATOS CARGADOS EN EL TRAMO
+                        if self.cl_tramos_entity.verifiedTramo(tramo_select) == False:
+                            # evaluo si hay un simbolo al inicio y al Final y proceso segun ello
+                            res_exists_symbol_inicio = self.cl_nodo_symbol_entity.getExistSymbolInicio(tramo_select)
+                            res_exists_symbol_final = self.cl_nodo_symbol_entity.getExistSymbolFinal(tramo_select)
 
 
-                        if res_exists_symbol_inicio == False and res_exists_symbol_final == False:
+                            if res_exists_symbol_inicio == False and res_exists_symbol_final == False:
 
-                            print("dentro acaaaaaaaasdasdsadsa")
-                            self.resetDialogs()
-                            self.showBoxsCompleted(tramo_select)
-                            self.tramos.setChecked(False)
+                                print("dentro acaaaaaaaasdasdsadsa")
+                                self.resetDialogs()
+                                self.showBoxsCompleted(tramo_select)
+                                self.tramos.setChecked(False)
 
-                        elif res_exists_symbol_inicio != False and res_exists_symbol_final == False:
+                            elif res_exists_symbol_inicio != False and res_exists_symbol_final == False:
 
-                            #Ei el Inicio es una Descarga debo indicar que no se puede
+                                #Ei el Inicio es una Descarga debo indicar que no se puede
 
-                            print("dentro aca")
-                            self.resetDialogs()
-                            self.showBoxWithInitialData(tramo_select)
-                            self.tramos.setChecked(False)
+                                print("dentro aca")
+                                self.resetDialogs()
+                                self.showBoxWithInitialData(tramo_select)
+                                self.tramos.setChecked(False)
 
-                        elif res_exists_symbol_inicio == False and res_exists_symbol_final != False:
-                            self.resetDialogs()
-                            self.showBoxWithFinalData(tramo_select)
-                            self.tramos.setChecked(False)
+                            elif res_exists_symbol_inicio == False and res_exists_symbol_final != False:
+                                self.resetDialogs()
+                                self.showBoxWithFinalData(tramo_select)
+                                self.tramos.setChecked(False)
 
-                        elif res_exists_symbol_inicio != False and res_exists_symbol_final != False:
+                            elif res_exists_symbol_inicio != False and res_exists_symbol_final != False:
 
-                            self.resetDialogs()
-                            self.showBoxWithInitialAndFinalData(tramo_select)
-                            self.tramos.setChecked(False)
+                                self.resetDialogs()
+                                self.showBoxWithInitialAndFinalData(tramo_select)
+                                self.tramos.setChecked(False)
 
-                    else:
-                        self.iface.messageBar().pushMessage("Error", "Ya existen Propiedades Agregadas. Borrelos e intente nuevamente!", Qgis.Critical)
-
-
+                        else:
+                            self.iface.messageBar().pushMessage("Error", "Ya existen Propiedades Agregadas. Borrelos e intente nuevamente!", Qgis.Critical)
 
 
                 else:
